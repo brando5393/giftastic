@@ -1,5 +1,4 @@
 var defaultButtonsArray = ["time lord", "cyberman", "dalek", "tardis", "doctor who"];
-var userSearches = [];
 
 function createNewButton() {
     var userSearchTerm = $("#gif-search-box").val();
@@ -32,7 +31,9 @@ $(document).ready(function () {
         }).then(function(response){
             console.log(response);
             for(g = 0; g < response.data.length; g ++){
-                $("#gif-container").append(response.data[g]);
+                var gifResultSource = response.data.url;
+                var gifResult = $("<img>").addClass("gif-result-"+g).attr("src", gifResultSource);
+                $("#gif-container").append(gifResult);
             }
         })
     })
