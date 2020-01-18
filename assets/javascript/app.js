@@ -12,26 +12,8 @@ function createNewButton() {
     $("#button-container").append(userSearchResultButton);
     // Clears the search box
     $("#gif-search-box").val("");
-}
-
-
-$(document).ready(function () {
-    // for loop to create and display default buttons
-    for (i = 0; i < defaultButtonsArray.length; i++) {
-        var buttonText = defaultButtonsArray[i];
-        var searchResultButton = $("<button>").addClass("btn btn-info search-result-btn").attr('type', 'button', ).prop('value', buttonText).text(buttonText);
-        $("#button-container").append(searchResultButton);
-    }
-
-    // search button on click event
-    $("#search-btn").on("click", function (event) {
-        // prevents default submit button behavior
-        event.preventDefault();
-        // create new button function call
-        createNewButton();
-    })
-    // search result button on click event
     $(".search-result-btn").on("click", function () {
+        console.log("clicked");
         // the api url
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Bt8Wuq64T86SteyQs16W4wurw60Fjknn&q="+ giffySearchTerm +"&limit=10&offset=0&rating=PG&lang=en";
         // sets the value of giffy search term to the value of the clicked button
@@ -54,6 +36,24 @@ $(document).ready(function () {
             }
         })
     })
+};
+
+
+$(document).ready(function () {
+    // for loop to create and display default buttons
+    for (i = 0; i < defaultButtonsArray.length; i++) {
+        var buttonText = defaultButtonsArray[i];
+        var searchResultButton = $("<button>").addClass("btn btn-info search-result-btn").attr('type', 'button', ).prop('value', buttonText).text(buttonText);
+        $("#button-container").append(searchResultButton);
+    };
+
+    // search button on click event
+    $("#search-btn").on("click", function (event) {
+        // prevents default submit button behavior
+        event.preventDefault();
+        // create new button function call
+        createNewButton();
+    });
     // on click gif plays
 
     // on next click gif stops
