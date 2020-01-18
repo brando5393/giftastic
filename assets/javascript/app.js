@@ -14,25 +14,25 @@ function createNewButton() {
     $("#gif-search-box").val("");
     $(".search-result-btn").on("click", function () {
         console.log("clicked");
-        // the api url
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Bt8Wuq64T86SteyQs16W4wurw60Fjknn&q="+ giffySearchTerm +"&limit=10&offset=0&rating=PG&lang=en";
         // sets the value of giffy search term to the value of the clicked button
         var giffySearchTerm = $(this).val();
-        console.log(giffySearchTerm);
+        // the api url
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Bt8Wuq64T86SteyQs16W4wurw60Fjknn&q="+ giffySearchTerm +"&limit=10&offset=0&rating=PG&lang=en";
         // ajax call
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response){
-            console.log(response);
+            console.log(response.data);
             // loop to display resulting gifs from ajax call response
             for(g = 0; g < response.data.length; g ++){
                 // sets the value of gif result source to the url contained in the data array of the ajax response
-                var gifResultSource = response.data.url;
+                var gifResultSource = response.data[g].images.original.url;
                 // creates an image tag to display the gifs in
                 var gifResult = $("<img>").addClass("gif-result-"+g).attr("src", gifResultSource);
                 // appends gifs to the gifs container
-                $("#gif-container").append(gifResult);
+                $("#gif-container").prepend(gifResult);
+                console.log("the query url is " + queryURL);
             }
         })
     })
