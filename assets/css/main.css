@@ -1,5 +1,11 @@
 body{
+    background-image: url(https://www.samwoolfe.com/wp-content/uploads/2012/12/Webp.net-resizeimage-1440x866.jpg);
+    background-size: cover;
+    font-family: 'Orbitron', sans-serif;
+}
 
+h1,h2,h3,h4,h5,h5{
+    font-family: 'Righteous', cursive;
 }
 
 img{
@@ -8,12 +14,38 @@ img{
     margin-right: 10px;
 }
 
+.container{
+    background-color: whitesmoke;
+}
+
 .search-result-btn{
     margin: 5px 5px 0 0;
     border-radius: 15px;
     font-weight: bold;
 }
 
+#page-heading{
+    background-color: grey;
+    text-align: center;
+    color: whitesmoke;
+    border: 2px solid #17A2B8;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 5px;
+
+}
+
+
+#search-area{
+    background-color: grey;
+    border: 2px solid #17A2B8;
+    border-radius: 15px;
+    padding: 10px;
+}
 #search-btn{
-    margin-left: 2px;
+    margin-left: 5px;
+}
+
+#search-heading{
+    color: whitesmoke;
 }
