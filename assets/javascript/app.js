@@ -27,9 +27,11 @@ function createNewButton() {
             // loop to display resulting gifs from ajax call response
             for(g = 0; g < response.data.length; g ++){
                 // sets the value of gif result source to the url contained in the data array of the ajax response
-                var gifResultSource = response.data[g].images.original.url;
+                var gifResultSource = response.data[g].images.original_still.url;
+                // url to animated gif
+                var gifResultSourceAnimated = response.data[g].images.original.url;
                 // creates an image tag to display the gifs in
-                var gifResult = $("<img>").addClass("gif-result-"+g).attr("src", gifResultSource);
+                var gifResult = $("<img>").addClass("gif-result-"+g).attr("src", gifResultSource, "value", "still");
                 // appends gifs to the gifs container
                 $("#gif-container").prepend(gifResult);
                 console.log("the query url is " + queryURL);
@@ -43,7 +45,7 @@ $(document).ready(function () {
     // for loop to create and display default buttons
     for (i = 0; i < defaultButtonsArray.length; i++) {
         var buttonText = defaultButtonsArray[i];
-        var searchResultButton = $("<button>").addClass("btn btn-info search-result-btn").attr('type', 'button', ).prop('value', buttonText).text(buttonText);
+        var searchResultButton = $("<button>").addClass("btn btn-info search-result-btn").attr('type', 'button', ).attr('value', buttonText).text(buttonText);
         $("#button-container").append(searchResultButton);
     };
 
@@ -54,7 +56,17 @@ $(document).ready(function () {
         // create new button function call
         createNewButton();
     });
-    // on click gif plays
 
-    // on next click gif stops
+    $(".gif-result-"+g).on("click", function(){
+        // on click gif plays
+        if($(".gif-result-"+g).val() === "still"){
+            $(".gif-result-"+g).attr("src", gifResultSourceAnimated);
+            $(".gif-result-"+g).attr("value", "animated");
+            // on next click gif stops
+        }else if(($(".gif-result-"+g).val() === "animated")){
+            $(".gif-result-"+g).attr("src", gifResultSource);
+            $(".gif-result-"+g).attr("value", "still");
+        };
+
+    })
 });

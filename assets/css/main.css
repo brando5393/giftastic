@@ -2,6 +2,12 @@ body{
 
 }
 
+img{
+    width: 250px;
+    height: auto;
+    margin-right: 10px;
+}
+
 .search-result-btn{
     margin: 5px 5px 0 0;
     border-radius: 15px;
