@@ -31,7 +31,12 @@ function createNewButton() {
                 // url to animated gif
                 var gifResultSourceAnimated = response.data[g].images.original.url;
                 // creates an image tag to display the gifs in
-                var gifResult = $("<img>").addClass("gif-result").attr("src", gifResultSource, "data-still", gifResultSource, "data-animate", gifResultSourceAnimated, "data-state", "still");
+                var gifResult = $("<img>").addClass("gif-result").attr({
+                    "src": gifResultSource,
+                    "data-still": gifResultSource,
+                    "data-animate": gifResultSourceAnimated,
+                    "data-state": "still"
+                });
                 // appends gifs to the gifs container
                 $("#gif-container").prepend(gifResult);
                 console.log("the query url is " + queryURL);
@@ -58,8 +63,14 @@ $(document).ready(function () {
     });
 
     $(".gif-result").on("click", function () {
-        // on click gif plays
-        // on next click gif stops
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", gifResultSourceAnimated);
+            $(this).attr("data-state", "animate");
+        } else {
+            $(this).attr("src", gifResultSource);
+            $(this).attr("data-state", "still");
+        }
 
     })
 });
