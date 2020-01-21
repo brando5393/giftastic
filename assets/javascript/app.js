@@ -14,6 +14,7 @@ function createNewButton() {
     $("#gif-search-box").val("");
     $(".search-result-btn").on("click", function () {
         console.log("clicked");
+        $("#gif-container").empty();
         // sets the value of giffy search term to the value of the clicked button
         var giffySearchTerm = $(this).val();
         // the api url
