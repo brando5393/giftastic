@@ -41,12 +41,32 @@ function createNewButton() {
                 $("#gif-container").prepend(gifResult);
                 console.log("the query url is " + queryURL);
             }
+            animateGif();
         })
     })
 };
 
+function animateGif(){
+    $(".gif-result").on("click", function() {
+        var state = $(this).attr("data-state");
+        console.log("gif clicked");
+        if (state == "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+            console.log("animation started");
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+            console.log("animation stopped");
+        }
+
+    });
+}
+
 
 $(document).ready(function () {
+
+    
     $( "#gif-search-box" ).focus();
     // for loop to create and display default buttons
     for (i = 0; i < defaultButtonsArray.length; i++) {
@@ -67,15 +87,5 @@ $(document).ready(function () {
         }
     });
 
-    $(".gif-result").on("click", function () {
-        var state = $(this).attr("data-state");
-        if (state === "still") {
-            $(this).attr("src", gifResultSourceAnimated);
-            $(this).attr("data-state", "animate");
-        } else {
-            $(this).attr("src", gifResultSource);
-            $(this).attr("data-state", "still");
-        }
-
-    })
+    
 });
