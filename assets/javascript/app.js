@@ -47,6 +47,7 @@ function createNewButton() {
 
 
 $(document).ready(function () {
+    $( "#gif-search-box" ).focus();
     // for loop to create and display default buttons
     for (i = 0; i < defaultButtonsArray.length; i++) {
         var buttonText = defaultButtonsArray[i];
@@ -58,8 +59,12 @@ $(document).ready(function () {
     $("#search-btn").on("click", function (event) {
         // prevents default submit button behavior
         event.preventDefault();
-        // create new button function call
-        createNewButton();
+        if($("#gif-search-box").val() === ""){
+            alert("Please enter a valid search term");
+        }else{
+            // create new button function call
+            createNewButton();
+        }
     });
 
     $(".gif-result").on("click", function () {
